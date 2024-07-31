@@ -758,6 +758,17 @@ bool b2Shape_IsSensor(b2ShapeId shapeId)
 	return shape->isSensor;
 }
 
+bool b2Shape_SetSensor(b2ShapeId shapeId, bool flag)
+{
+	b2World* world = b2GetWorld(shapeId.world0);
+	if (world == NULL)
+	{
+		return;
+	}
+	b2Shape* shape = b2GetShape(world, shapeId);
+	shape->isSensor = flag;
+}
+
 bool b2Shape_TestPoint(b2ShapeId shapeId, b2Vec2 point)
 {
 	b2World* world = b2GetWorld(shapeId.world0);
