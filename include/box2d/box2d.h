@@ -915,6 +915,10 @@ B2_API float b2RevoluteJoint_GetSpringDampingRatio(b2JointId jointId);
 ///	@see b2RevoluteJointDef::referenceAngle
 B2_API float b2RevoluteJoint_GetAngle(b2JointId jointId);
 
+/// Get the revolute joint reference angle in radians
+/// @see b2RevoluteJointDef::referenceAngle
+B2_API float b2RevoluteJoint_GetReferenceAngle(b2JointId jointId);
+
 /// Enable/disable the revolute joint limit
 B2_API void b2RevoluteJoint_EnableLimit(b2JointId jointId, bool enableLimit);
 
