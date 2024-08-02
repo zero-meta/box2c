@@ -141,6 +141,20 @@ float b2PrismaticJoint_GetMaxMotorForce(b2JointId jointId)
 	return joint->prismaticJoint.maxMotorForce;
 }
 
+float b2PrismaticJoint_GetJointTranslation(b2JointId jointId)
+{
+	b2JointSim* joint = b2GetJointSimCheckType(jointId, b2_prismaticJoint);
+
+	b2BodyId bodyIdA = b2Joint_GetBodyA(jointId);
+	b2Vec2 pA = b2Body_GetWorldPoint(bodyIdA, joint->localOriginAnchorA);
+	b2Vec2 pB = b2Body_GetWorldPoint(b2Joint_GetBodyB(jointId), joint->localOriginAnchorA);
+	b2Vec2 d = b2Sub(pB, pA);
+	b2Vec2 axis = b2Body_GetWorldVector(bodyIdA, joint->prismaticJoint.localAxisA);
+
+	float translation = b2Dot(d, axis);
+	return translation;
+}
+
 b2Vec2 b2GetPrismaticJointForce(b2World* world, b2JointSim* base)
 {
 	int idA = base->bodyIdA;

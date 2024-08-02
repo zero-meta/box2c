@@ -878,6 +878,9 @@ B2_API float b2PrismaticJoint_GetMaxMotorForce(b2JointId jointId);
 /// Get the prismatic joint current motor force, typically in newtons
 B2_API float b2PrismaticJoint_GetMotorForce(b2JointId jointId);
 
+/// Get the prismatic joint translation, usually in meters.
+B2_API float b2PrismaticJoint_GetJointTranslation(b2JointId jointId);
+
 /** @} */
 
 /**
