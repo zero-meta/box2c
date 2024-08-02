@@ -74,7 +74,7 @@ float b2RevoluteJoint_GetReferenceAngle(b2JointId jointId)
 	b2Transform transformA = b2GetBodyTransform(world, jointSim->bodyIdA);
 	b2Transform transformB = b2GetBodyTransform(world, jointSim->bodyIdB);
 
-	return jointSim->revoluteJoint.angle;
+	return jointSim->revoluteJoint.referenceAngle;
 }
 
 void b2RevoluteJoint_EnableLimit(b2JointId jointId, bool enableLimit)
