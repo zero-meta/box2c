@@ -453,7 +453,7 @@ B2_API b2BodyId b2Shape_GetBody(b2ShapeId shapeId);
 B2_API bool b2Shape_IsSensor(b2ShapeId shapeId);
 
 /// Set this body to be a sensor.
-B2_API bool b2Shape_SetSensor(b2ShapeId shapeId, bool flag);
+B2_API void b2Shape_SetSensor(b2ShapeId shapeId, bool flag);
 
 /// Set the user data for a shape
 B2_API void b2Shape_SetUserData(b2ShapeId shapeId, void* userData);

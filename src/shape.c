@@ -758,7 +758,7 @@ bool b2Shape_IsSensor(b2ShapeId shapeId)
 	return shape->isSensor;
 }
 
-bool b2Shape_SetSensor(b2ShapeId shapeId, bool flag)
+void b2Shape_SetSensor(b2ShapeId shapeId, bool flag)
 {
 	b2World* world = b2GetWorld(shapeId.world0);
 	if (world == NULL)
