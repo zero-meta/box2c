@@ -449,6 +449,7 @@ typedef enum b2JointType
 	b2_revoluteJoint,
 	b2_weldJoint,
 	b2_wheelJoint,
+	b2_fakeJoint
 } b2JointType;
 
 /// Distance joint definition
@@ -852,6 +853,42 @@ typedef struct b2WheelJointDef
 /// Use this to initialize your joint definition
 /// @ingroup wheel_joint
 B2_API b2WheelJointDef b2DefaultWheelJointDef(void);
+
+/// Fake joint definition
+///
+/// A fake joint connect two bodies for personal purpose.
+/// @note This is for personal purpose
+/// @ingroup fake_joint
+typedef struct b2FakeJointDef
+{
+	/// The first attached body
+	b2BodyId bodyIdA;
+
+	/// The second attached body
+	b2BodyId bodyIdB;
+
+	/// The local anchor point relative to bodyA's origin
+	b2Vec2 localAnchorA;
+
+	/// The local anchor point relative to bodyB's origin
+	b2Vec2 localAnchorB;
+
+	/// The bodyB angle minus bodyA angle in the reference state (radians)
+	float referenceAngle;
+
+	/// Set this flag to true if the attached bodies should collide
+	bool collideConnected;
+
+	/// User data pointer
+	void* userData;
+
+	/// Used internally to detect a valid definition. DO NOT SET.
+	int32_t internalValue;
+} b2FakeJointDef;
+
+/// Use this to initialize your joint definition
+/// @ingroup fake_joint
+B2_API b2FakeJointDef b2DefaultFakeJointDef(void);
 
 /**
  * @defgroup events Events

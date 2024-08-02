@@ -238,6 +238,19 @@ typedef struct b2WheelJoint
 	bool enableLimit;
 } b2WheelJoint;
 
+typedef struct b2FakeJoint
+{
+	float referenceAngle;
+
+	int indexA;
+	int indexB;
+	b2Vec2 anchorA;
+	b2Vec2 anchorB;
+	b2Vec2 deltaCenter;
+	float deltaAngle;
+	float axialMass;
+} b2FakeJoint;
+
 /// The base joint class. Joints are used to constraint two bodies together in
 /// various fashions. Some joints also feature limits and motors.
 typedef struct b2JointSim
@@ -265,6 +278,7 @@ typedef struct b2JointSim
 		b2PrismaticJoint prismaticJoint;
 		b2WeldJoint weldJoint;
 		b2WheelJoint wheelJoint;
+		b2FakeJoint fakeJoint;
 	};
 } b2JointSim;
 
