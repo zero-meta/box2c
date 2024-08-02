@@ -1066,6 +1066,8 @@ B2_API float b2WheelJoint_GetMaxMotorTorque(b2JointId jointId);
 /// Get the wheel joint current motor torque, typically in newton-meters
 B2_API float b2WheelJoint_GetMotorTorque(b2JointId jointId);
 
+/// Get the wheel joint translation, usually in meters.
+B2_API float b2WheelJoint_GetJointTranslation(b2JointId jointId);
 /**@}*/
 
 /**@}*/
