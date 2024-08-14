@@ -203,6 +203,9 @@ B2_API b2Rot b2Body_GetRotation( b2BodyId bodyId );
 /// Get the world transform of a body.
 B2_API b2Transform b2Body_GetTransform( b2BodyId bodyId );
 
+/// Get the world previous transform of a body.
+B2_API b2Transform b2Body_GetPreviousTransform( b2BodyId bodyId );
+
 /// Set the world transform of a body. This acts as a teleport and is fairly expensive.
 /// @note Generally you should create a body with then intended transform.
 ///	@see b2BodyDef::position and b2BodyDef::angle

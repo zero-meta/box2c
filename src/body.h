@@ -98,6 +98,9 @@ typedef struct b2BodySim
 	// transform for body origin
 	b2Transform transform;
 
+	// the previous transform for particle simulation
+	b2Transform transform0;
+
 	// center of mass position in world space
 	b2Vec2 center;
 
@@ -140,6 +143,7 @@ b2Body* b2GetBody( b2World* world, int bodyId );
 b2Body* b2GetBodyFullId( b2World* world, b2BodyId bodyId );
 
 b2Transform b2GetBodyTransformQuick( b2World* world, b2Body* body );
+b2Transform b2GetBodyPreviousTransformQuick( b2World* world, b2Body* body );
 b2Transform b2GetBodyTransform( b2World* world, int bodyId );
 
 // Create a b2BodyId from a raw id.

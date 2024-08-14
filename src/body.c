@@ -45,6 +45,15 @@ b2Transform b2GetBodyTransformQuick( b2World* world, b2Body* body )
 	return bodySim->transform;
 }
 
+b2Transform b2GetBodyPreviousTransformQuick( b2World* world, b2Body* body )
+{
+	b2CheckIndex( world->solverSetArray, body->setIndex );
+	b2SolverSet* set = world->solverSetArray + body->setIndex;
+	B2_ASSERT( 0 <= body->localIndex && body->localIndex <= set->sims.count );
+	b2BodySim* bodySim = set->sims.data + body->localIndex;
+	return bodySim->transform0;
+}
+
 b2Transform b2GetBodyTransform( b2World* world, int bodyId )
 {
 	b2CheckIndex( world->bodyArray, bodyId );
@@ -237,6 +246,8 @@ b2BodyId b2CreateBody( b2WorldId worldId, const b2BodyDef* def )
 	*bodySim = ( b2BodySim ){ 0 };
 	bodySim->transform.p = def->position;
 	bodySim->transform.q = def->rotation;
+	bodySim->transform0.p = def->position;
+	bodySim->transform0.q = def->rotation;
 	bodySim->center = def->position;
 	bodySim->rotation0 = bodySim->transform.q;
 	bodySim->center0 = bodySim->center;
@@ -639,6 +650,13 @@ b2Transform b2Body_GetTransform( b2BodyId bodyId )
 	return b2GetBodyTransformQuick( world, body );
 }
 
+b2Transform b2Body_GetPreviousTransform( b2BodyId bodyId )
+{
+	b2World* world = b2GetWorld( bodyId.world0 );
+	b2Body* body = b2GetBodyFullId( world, bodyId );
+	return b2GetBodyPreviousTransformQuick( world, body );
+}
+
 b2Vec2 b2Body_GetLocalPoint( b2BodyId bodyId, b2Vec2 worldPoint )
 {
 	b2World* world = b2GetWorld( bodyId.world0 );
@@ -684,6 +702,8 @@ void b2Body_SetTransform( b2BodyId bodyId, b2Vec2 position, b2Rot rotation )
 
 	bodySim->transform.p = position;
 	bodySim->transform.q = rotation;
+	bodySim->transform0.p = position;
+	bodySim->transform0.q = rotation;
 	bodySim->center = b2TransformPoint( bodySim->transform, bodySim->localCenter );
 
 	bodySim->rotation0 = bodySim->transform.q;
